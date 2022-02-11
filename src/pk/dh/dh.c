@@ -224,4 +224,18 @@ int dh_get_groupsize(const dh_key *key)
    return mp_unsigned_bin_size(key->prime);
 }
 
+/**
+  Free the allocated ram for a DH key
+  @param key   The key which you wish to free
+*/
+int dh_init(dh_key *key)
+{
+   int err;
+   LTC_ARGCHK(key != NULL);
+   if ((err = mp_init_multi(&key->x, &key->y, &key->base, &key->prime, NULL)) != CRYPT_OK) {
+      return err;
+   }
+   return CRYPT_OK;
+}
+
 #endif /* LTC_MDH */
