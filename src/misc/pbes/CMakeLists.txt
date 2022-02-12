@@ -1,8 +1,0 @@
-set(MISC_PBES_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/pbes.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/pbes1.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/pbes2.c
-)
-
-target_sources(${PROJECT_NAME}-shared PRIVATE ${MISC_PBES_SOURCES})
-target_sources(${PROJECT_NAME}-static PRIVATE ${MISC_PBES_SOURCES})

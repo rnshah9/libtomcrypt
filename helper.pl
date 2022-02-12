@@ -255,6 +255,20 @@ sub prepare_msvc_files_xml {
   return $files;
 }
 
+sub prepare_cmake_files {
+  my ($all) = @_;
+
+  my $files = "set(SOURCES\n";
+
+  for my $file (@$all) {
+    $files .= "\t" . $file . "\n";
+  }
+
+  $files .= ")";
+
+  return $files;
+}
+
 sub patch_file {
   my ($content, @variables) = @_;
   for my $v (@variables) {
@@ -319,6 +333,21 @@ sub process_makefiles {
     my $old = read_file($m);
     my $new = $m eq 'makefile.msvc' ? patch_file($old, $var_obj, $var_h, $var_tobj, @ver_version)
                                     : patch_file($old, $var_o, $var_h, $var_to, @ver_version);
+    if ($old ne $new) {
+      write_file($m, $new) if $write;
+      warn "changed: $m\n";
+      $changed_count++;
+    }
+  }
+
+  # update source files in cmake
+  my $cmake_files = prepare_cmake_files(\@all);
+
+  for my $m (qw/sources.cmake/) {
+    my $old = read_file($m);
+    my $new = $old;
+    $new =~ s|set\(SOURCES\n.*\n\)|$cmake_files|s;
+
     if ($old ne $new) {
       write_file($m, $new) if $write;
       warn "changed: $m\n";

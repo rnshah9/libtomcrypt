@@ -1,9 +1,0 @@
-set(STREAM_SOBER128_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/sober128tab.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/sober128_test.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/sober128_stream.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/sober128_stream_memory.c
-)
-
-target_sources(${PROJECT_NAME}-shared PRIVATE ${STREAM_SOBER128_SOURCES})
-target_sources(${PROJECT_NAME}-static PRIVATE ${STREAM_SOBER128_SOURCES})

@@ -1,7 +1,0 @@
-set(HASH_WHIRL_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/whirl.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/whirltab.c
-)
-
-target_sources(${PROJECT_NAME}-shared PRIVATE ${HASH_WHIRL_SOURCES})
-target_sources(${PROJECT_NAME}-static PRIVATE ${HASH_WHIRL_SOURCES})

@@ -1,7 +1,0 @@
-set(STREAM_RABBIT_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/rabbit.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/rabbit_memory.c
-)
-
-target_sources(${PROJECT_NAME}-shared PRIVATE ${STREAM_RABBIT_SOURCES})
-target_sources(${PROJECT_NAME}-static PRIVATE ${STREAM_RABBIT_SOURCES})

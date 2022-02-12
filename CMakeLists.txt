@@ -16,8 +16,9 @@ option(USE_LTM "Build with libtommath" TRUE)
 #-----------------------------------------------------------------------------
 # Library targets
 #-----------------------------------------------------------------------------
-add_library(${PROJECT_NAME}-shared SHARED)
-add_library(${PROJECT_NAME}-static STATIC)
+include(${CMAKE_CURRENT_SOURCE_DIR}/sources.cmake)
+add_library(${PROJECT_NAME}-shared SHARED ${SOURCES})
+add_library(${PROJECT_NAME}-static STATIC ${SOURCES})
 
 #-----------------------------------------------------------------------------
 # Definitions
@@ -32,7 +33,6 @@ endif()
 #-----------------------------------------------------------------------------
 # Add subdirectories
 #-----------------------------------------------------------------------------
-add_subdirectory(src)
 add_subdirectory(demos)
 
 #-----------------------------------------------------------------------------

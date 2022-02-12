@@ -1,6 +1,0 @@
-set(HASH_CHC_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/chc.c
-)
-
-target_sources(${PROJECT_NAME}-shared PRIVATE ${HASH_CHC_SOURCES})
-target_sources(${PROJECT_NAME}-static PRIVATE ${HASH_CHC_SOURCES})
