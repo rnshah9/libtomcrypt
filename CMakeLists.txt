@@ -17,8 +17,7 @@ option(USE_LTM "Build with libtommath" TRUE)
 # Library targets
 #-----------------------------------------------------------------------------
 include(${CMAKE_CURRENT_SOURCE_DIR}/sources.cmake)
-add_library(${PROJECT_NAME}-shared SHARED ${SOURCES})
-add_library(${PROJECT_NAME}-static STATIC ${SOURCES})
+add_library(${PROJECT_NAME} ${SOURCES})
 
 #-----------------------------------------------------------------------------
 # Definitions
@@ -26,8 +25,7 @@ add_library(${PROJECT_NAME}-static STATIC ${SOURCES})
 if(USE_LTM)
     find_package(tommath 1.2.0 REQUIRED)
 
-    target_compile_definitions(${PROJECT_NAME}-shared PUBLIC USE_LTM LTM_DESC)
-    target_compile_definitions(${PROJECT_NAME}-static PUBLIC USE_LTM LTM_DESC)
+    target_compile_definitions(${PROJECT_NAME} PUBLIC USE_LTM LTM_DESC)
 endif()
 
 #-----------------------------------------------------------------------------
@@ -43,22 +41,11 @@ get_property(${PROJECT_NAME}-public-headers GLOBAL PROPERTY PUBLIC_HEADERS)
 #-----------------------------------------------------------------------------
 # Library target properties
 #-----------------------------------------------------------------------------
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+set_target_properties(${PROJECT_NAME} PROPERTIES SOVERSION ${PROJECT_VERSION})
+set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${${PROJECT_NAME}-public-headers}")
 
-# shared
-set_target_properties(${PROJECT_NAME}-shared PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
-set_target_properties(${PROJECT_NAME}-shared PROPERTIES SOVERSION ${PROJECT_VERSION})
-set_target_properties(${PROJECT_NAME}-shared PROPERTIES PUBLIC_HEADER "${${PROJECT_NAME}-public-headers}")
-
-target_include_directories(${PROJECT_NAME}-shared PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/headers>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lib${PROJECT_NAME}>
-)
-
-# static
-set_target_properties(${PROJECT_NAME}-static PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
-set_target_properties(${PROJECT_NAME}-static PROPERTIES PUBLIC_HEADER "${${PROJECT_NAME}-public-headers}")
-
-target_include_directories(${PROJECT_NAME}-static PUBLIC
+target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/headers>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/lib${PROJECT_NAME}>
 )
@@ -85,17 +72,10 @@ write_basic_package_version_file(
 )
 
 # install targets
-install(TARGETS ${PROJECT_NAME}-shared
+install(TARGETS ${PROJECT_NAME}
         COMPONENT "runtime"
         EXPORT ${TARGETS_EXPORT_NAME}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-        PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lib${PROJECT_NAME}
-)
-
-install(TARGETS ${PROJECT_NAME}-static
-        COMPONENT "development"
-        EXPORT ${TARGETS_EXPORT_NAME}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lib${PROJECT_NAME}
 )
 
