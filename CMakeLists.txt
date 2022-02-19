@@ -12,6 +12,7 @@ include(CMakePackageConfigHelpers)
 # Options
 #-----------------------------------------------------------------------------
 option(USE_LTM "Build with libtommath" TRUE)
+option(BUILD_SHARED_LIBS "Build shared library" FALSE)
 
 #-----------------------------------------------------------------------------
 # Library targets
