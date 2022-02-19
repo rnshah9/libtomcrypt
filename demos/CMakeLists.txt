@@ -18,7 +18,7 @@ if(BUILD_USEFUL_DEMOS)
     )
 
     target_link_libraries(hashsum PRIVATE
-        ${PROJECT_NAME}-shared
+        ${PROJECT_NAME}
     )
 
 endif()
@@ -37,7 +37,7 @@ if(BUILD_USABLE_DEMOS)
     )
 
     target_link_libraries(ltcrypt PRIVATE
-        ${PROJECT_NAME}-shared
+        ${PROJECT_NAME}
     )
 
     # sizes
@@ -46,7 +46,7 @@ if(BUILD_USABLE_DEMOS)
     )
 
     target_link_libraries(sizes PRIVATE
-        ${PROJECT_NAME}-shared
+        ${PROJECT_NAME}
     )
 
     # constants
@@ -55,7 +55,7 @@ if(BUILD_USABLE_DEMOS)
     )
 
     target_link_libraries(constants PRIVATE
-        ${PROJECT_NAME}-shared
+        ${PROJECT_NAME}
     )
 
 endif()
