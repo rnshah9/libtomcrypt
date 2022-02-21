@@ -53,7 +53,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 
 # libtommath dependent
 if(USE_LTM)
-    target_link_libraries(${PROJECT_NAME} INTERFACE tommath)
+    target_link_libraries(${PROJECT_NAME} PUBLIC tommath)
 endif()
 
 #---------------------------------------------------------------------------------------
