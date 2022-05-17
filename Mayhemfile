@@ -1,0 +1,6 @@
+project: rnshah9/libtomcrypt
+target: libtomcrypt
+tests: null
+
+cmds:
+  - cmd: /repo/hashsum -a sha3-512 @@
