@@ -1,5 +1,5 @@
 project: rnshah9/libtomcrypt
-target: libtomcrypt
+target: hashsum
 tests: null
 
 cmds:
