@@ -2,4 +2,4 @@ project: libtomcrypt
 target: hashsum
 
 cmds:
-  - cmd: /repo/hashsum -a sha3-512 @@
+  - cmd: /hashsum -a sha3-512 @@
